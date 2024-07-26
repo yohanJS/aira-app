@@ -138,14 +138,7 @@
             text-decoration: none;
           }
          
-         
 
-.glass-button {
-  background-color: rgba(255, 255, 255, 0.1);
-  /* Adjust the opacity (0.3) as needed */
-  backdrop-filter: blur(10px);
-  /* Adjust the blur value as needed */
-}
 
 .btn-border-color {
   border: 1px solid #CFDD51;
@@ -170,7 +163,7 @@
 }
 
 .bg-color {
-  background-color: rgba(255, 255, 255, 0.1);
+  background-color: rgba(242, 244, 243, 0.1);
   /* Adjust the opacity (0.3) as needed */
   backdrop-filter: blur(10px);
 }

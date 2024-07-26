@@ -1,11 +1,13 @@
 <script setup>
 import NavBar from './components/NavBar.vue';
 import Hero from './components/Hero.vue';
+import GenerateReviewSection from './components/GenerateReviewSection.vue';
 </script>
 
 <template>
   <NavBar></NavBar>
   <Hero></Hero>
+  <GenerateReviewSection></GenerateReviewSection>
 </template>
 
 <style scoped>
