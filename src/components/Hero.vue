@@ -1,12 +1,12 @@
 <template>
-  <div class="container-fluid p-0 bg-color">
+  <div class="container-fluid p-0 bg-light">
     <div class="row g-0">
       <div class="col-md-12 shadow-lg position-relative">
-        <div class="row d-flex flex-column pt-5 align-items-center text-center text-white" style="position: absolute; top: 0; left: 0; width: 100%; height: 100vh; z-index: 1;">
+        <div class="row d-flex flex-column pt-5 align-items-center text-center text-white" style="position: absolute; top: 0; left: 0; height: 100vh; z-index: 1;">
           <div id="section" class="col-12 mt-5">
        
           </div>
-          <div class="col-12">
+          <div class="col-12 p-2">
             <h1 class="display-1">Meet Aeero, Your Intelligent Companion</h1>
           </div>
           <div class="row">
