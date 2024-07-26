@@ -1,6 +1,6 @@
 <template>
   <!--MOBILE VERSION-->
-  <nav id="home" class="navbar p-0 glass-btn" v-if="isMobile">
+  <nav id="home" class="navbar p-0 bg-color" v-if="isMobile">
     <div class="container-fluid">
       <a class="navbar-brand" href="#">
         Aira
