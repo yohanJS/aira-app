@@ -7,7 +7,7 @@
 
           </div>
           <div class="col-12 p-3">
-            <h1 class="display-2 btn-text-color fw-size-400">Meet Aeero, Your Intelligent Companion</h1>
+            <h1 class="display-2 btn-text-color fw-size-400">Meet Aira, Your Intelligent Companion</h1>
           </div>
           <div class="row">
             <div class="col-12 mt-5">
