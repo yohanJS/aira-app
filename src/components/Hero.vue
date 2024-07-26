@@ -13,7 +13,8 @@
             <div class="col-12 mt-5">
               <p id="welcomeMsg" class="mt-4 pb-3 btn-text-color fw-size-600">
               Experience the future of AI assistance with our cutting-edge technology.
-              </p>    
+              </p>
+              <button class="btn rounded-pill btn-dark text-light fw-bold m-0"  onclick="window.location.href='#freeQuoteBtn'">Explore AI</button>    
             </div>
           </div>
          </div>
