@@ -14,7 +14,7 @@
               <p id="welcomeMsg" class="mt-4 pb-3 btn-text-color fw-size-600">
               Experience the future of AI assistance with our cutting-edge technology.
               </p>
-              <button class="btn rounded-pill btn-dark text-light fw-bold m-0"  onclick="window.location.href='#freeQuoteBtn'">Explore AI</button>    
+              <button class="btn rounded-pill btn-dark text-light fw-bold m-0"  onclick="window.location.href='#'">Explore AI</button>    
             </div>
           </div>
          </div>
@@ -66,7 +66,6 @@ if (isMobile.value) {
   welcomeMsg.classList.remove("mt-4");
 } else {
   welcomeMsg.classList.add("mt-4");
-  freeQuoteBtn.classList.add("mr-r");
 }
 });
 </script>

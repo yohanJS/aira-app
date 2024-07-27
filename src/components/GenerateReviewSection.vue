@@ -5,45 +5,18 @@
         <h5 class="display-6 m-0">Write a better review</h5>
         <form @submit.prevent="generateReview" class="p-4 text-start">
           <div class="mb-3 pt-3">
-            <label class="form-label">Product or Service</label>
-            <input class="form-control" type="text">
-            <label class="form-label mt-3">Pick your words</label>
-            <div class="word-bubbles">
-              <div
-                v-for="word in words"
-                :key="word.value"
-                class="bubble"
-                :class="{'selected': selectedWords.includes(word.value), 'positive': word.type === 'positive', 'negative': word.type === 'negative'}"
-                @click="toggleWordSelection(word.value)"
-              >
-                {{ word.label }}
-              </div>
+            <label class="form-label">Enter product or service <strong>(with period at the end)</strong></label>
+            <input class="form-control" type="text" placeholder="'iPhone 13.', 'AC Fix.', 'restaurant.'" v-model="productOrService" :disabled="loading">  
+            <p class="mt-3">{{ words }}</p>
+            <div class="col-12 text-center" v-if="displaySpinnerMessage">
+              <span>
+                <div class="spinner-border text-primary" role="status">
+                  <span class="visually-hidden">Loading...</span>
+                </div>
+              </span>
             </div>
           </div>
-          <div class="mb-3">
-            <label class="form-label">Tone</label>
-            <div class="radio-buttons">
-              <label>
-                <input type="radio" value="formal" v-model="form.tone"> Formal
-              </label>
-              <label>
-                <input type="radio" value="enthusiastic" v-model="form.tone"> Enthusiastic
-              </label>
-              <label>
-                <input type="radio" value="neutral" v-model="form.tone"> Neutral
-              </label>
-            </div>
-          </div>
-          <button type="submit" class="btn rounded-pill btn-grad text-dark fw-bold m-0">Generate Review</button>
         </form>
-      </div>
-    </div>
-
-    <div v-if="generatedReview" class="card mb-4">
-      <div class="card-body">
-        <h5 class="card-title">Generated Review</h5>
-        <p class="card-text">{{ generatedReview }}</p>
-        <button @click="copyReview" class="btn btn-secondary">Copy Review</button>
       </div>
     </div>
   </div>
@@ -116,57 +89,36 @@
 }
 </style>
 
-<script>
-export default {
-  data() {
-    return {
-      form: {
-        name: '',
-        email: '',
-        rating: '',
-        tone: ''
-      },
-      generatedReview: '',
-      words: [
-        { value: 'amazing', label: 'Amazing', type: 'positive' },
-        { value: 'awesome', label: 'Awesome', type: 'positive' },
-        { value: 'fantastic', label: 'Fantastic', type: 'positive' },
-        { value: 'great', label: 'Great', type: 'positive' },
-        { value: 'excellent', label: 'Excellent', type: 'positive' },
-        { value: 'bad', label: 'Bad', type: 'negative' },
-        { value: 'poor', label: 'Poor', type: 'negative' },
-        { value: 'terrible', label: 'Terrible', type: 'negative' },
-        { value: 'disappointing', label: 'Disappointing', type: 'negative' },
-        { value: 'awful', label: 'Awful', type: 'negative' }
-      ],
-      selectedWords: []
-    };
-  },
-  methods: {
-    toggleWordSelection(wordValue) {
-      if (this.selectedWords.includes(wordValue)) {
-        this.selectedWords = this.selectedWords.filter(word => word !== wordValue);
-      } else {
-        this.selectedWords.push(wordValue);
-      }
-    },
-    generateReview() {
-      const selectedWords = this.words.filter(word => this.selectedWords.includes(word.value));
-      const positiveWords = selectedWords.filter(word => word.type === 'positive').map(word => word.label).join(', ');
-      const negativeWords = selectedWords.filter(word => word.type === 'negative').map(word => word.label).join(', ');
-      this.generatedReview = `Name: ${this.form.name}
-      Email: ${this.form.email}
-      Rating: ${this.form.rating}
-      Positive Words: ${positiveWords}
-      Negative Words: ${negativeWords}
-      Tone: ${this.form.tone}
-      Review: This product is ${positiveWords}. However, it could be ${negativeWords}. Overall, my experience was ${this.form.tone}.`;
-    },
-    copyReview() {
-      navigator.clipboard.writeText(this.generatedReview).then(() => {
-        alert('Review copied to clipboard');
+<script setup>
+import axios from 'axios'
+import { ref, watch } from 'vue'
+
+const productOrService = ref('')
+const words = ref('')
+const loading = ref(false)
+let displaySpinnerMessage = false
+
+watch(productOrService, async (newProductOrService) => {
+  if (newProductOrService.includes('.')) {
+    loading.value = true
+    words.value = 'Generating words..'
+    try {
+      displaySpinnerMessage = true
+      const { data } = await axios.post("https://www.bloggyapi.com/api/GenerateWords", {
+        productOrService: newProductOrService
       });
+      words.value = data
+      displaySpinnerMessage = false
+      setTimeout(() => {
+        window.location.href = "#";
+      }, 5000);
+
+    } catch (error) {
+      words.value = 'Error! Could not reach the API. ' + error
+    } finally {
+      loading.value = false
     }
   }
-};
+})
 </script>
+
