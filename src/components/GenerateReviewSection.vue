@@ -3,24 +3,59 @@
     <div class="row d-flex justify-content-center mb-4">
       <div class="col-xs-12 col-md-6">
         <h5 class="display-6 m-0">Write a better review</h5>
-        <form @submit.prevent="generateReview" class="p-4 text-start">
+        <form class="p-4 text-start" @submit.prevent="generateWords">
           <div class="mb-3 pt-3">
-            <label class="form-label">Enter product or service <strong>(with period at the end)</strong></label>
-            <input class="form-control" type="text" placeholder="'iPhone 13.', 'AC Fix.', 'restaurant.'" v-model="productOrService" :disabled="loading">  
-            <p class="mt-3">{{ words }}</p>
-            <div class="col-12 text-center" v-if="displaySpinnerMessage">
-              <span>
-                <div class="spinner-border text-primary" role="status">
-                  <span class="visually-hidden">Loading...</span>
+            <label class="form-label">Enter product or service</label>
+            <input class="form-control" type="text" placeholder="'iPhone 13', 'Pepsi', 'Restaurant Bahama Breeze.'"
+              v-model="productOrService">
+            <p class="mt-3">{{ words }}
+              <span v-if="displaySpinnerMessage">
+                <div class="spinner-border spinner-border-sm text-dark" role="status">
+                    <span class="visually-hidden">Loading...</span>
                 </div>
-              </span>
-            </div>
+              </span> 
+            </p>
+            <button class="btn rounded-pill btn-grad text-dark fw-bold m-0">Generate words</button>
           </div>
         </form>
       </div>
     </div>
   </div>
 </template>
+
+<script>
+import axios from "axios";
+export default {
+  data() {
+    return {
+      productOrService: null,
+      displaySpinnerMessage: false,
+      words: null
+    }
+  },
+  methods: {
+    async generateWords() {
+      this.words = 'Generating words..'
+      try {
+        this.displaySpinnerMessage = true
+        const localApiEndPoint = "https://localhost:7165/api/GenerateWords"
+        //const prdApiEndPoint = "https://www.bloggyapi.com/api/GenerateWords"
+        const { data } = await axios.post(localApiEndPoint, {
+          productOrService: this.productOrService
+        });
+        this.words = data
+        this.displaySpinnerMessage = false
+
+      } catch (error) {
+        this.words = 'Error! Could not reach the API. ' + error
+      } finally {
+        
+      }
+    }
+  }
+}
+
+</script>
 
 <style scoped>
 .btn-grad {
@@ -88,37 +123,3 @@
   overflow-y: auto;
 }
 </style>
-
-<script setup>
-import axios from 'axios'
-import { ref, watch } from 'vue'
-
-const productOrService = ref('')
-const words = ref('')
-const loading = ref(false)
-let displaySpinnerMessage = false
-
-watch(productOrService, async (newProductOrService) => {
-  if (newProductOrService.includes('.')) {
-    loading.value = true
-    words.value = 'Generating words..'
-    try {
-      displaySpinnerMessage = true
-      const { data } = await axios.post("https://www.bloggyapi.com/api/GenerateWords", {
-        productOrService: newProductOrService
-      });
-      words.value = data
-      displaySpinnerMessage = false
-      setTimeout(() => {
-        window.location.href = "#";
-      }, 5000);
-
-    } catch (error) {
-      words.value = 'Error! Could not reach the API. ' + error
-    } finally {
-      loading.value = false
-    }
-  }
-})
-</script>
-
