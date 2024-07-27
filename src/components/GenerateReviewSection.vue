@@ -38,9 +38,9 @@ export default {
       this.words = 'Generating words..'
       try {
         this.displaySpinnerMessage = true
-        const localApiEndPoint = "https://localhost:7165/api/GenerateWords"
-        //const prdApiEndPoint = "https://www.bloggyapi.com/api/GenerateWords"
-        const { data } = await axios.post(localApiEndPoint, {
+        //const localApiEndPoint = "https://localhost:7165/api/GenerateWords"
+        const prdApiEndPoint = "https://www.bloggyapi.com/api/GenerateWords"
+        const { data } = await axios.post(prdApiEndPoint, {
           productOrService: this.productOrService
         });
         this.words = data
