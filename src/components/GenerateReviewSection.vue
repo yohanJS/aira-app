@@ -2,10 +2,12 @@
   <div class="container-fluid bg-light pt-5 pb-5">
     <div class="row d-flex justify-content-center mb-4">
       <div class="col-xs-12 col-md-6">
-        <h5 class="display-6">Write a better review</h5>
+        <h5 class="display-6 m-0">Write a better review</h5>
         <form @submit.prevent="generateReview" class="p-4 text-start">
           <div class="mb-3 pt-3">
-            <label class="form-label">Pick your words</label>
+            <label class="form-label">Product or Service</label>
+            <input class="form-control" type="text">
+            <label class="form-label mt-3">Pick your words</label>
             <div class="word-bubbles">
               <div
                 v-for="word in words"
@@ -23,9 +25,6 @@
             <div class="radio-buttons">
               <label>
                 <input type="radio" value="formal" v-model="form.tone"> Formal
-              </label>
-              <label>
-                <input type="radio" value="informal" v-model="form.tone"> Informal
               </label>
               <label>
                 <input type="radio" value="enthusiastic" v-model="form.tone"> Enthusiastic
