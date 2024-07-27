@@ -1,7 +1,7 @@
 <template>
   <div class="container-fluid">
     <div class="row g-0">
-      <div class="col-md-12 shadow-lg position-relative">
+      <div class="col-md-12 position-relative">
         <div class="row d-flex flex-column bg-color pt-5 align-items-center text-center text-white" style="top: 0; left: 0; height: 100vh; z-index: 1;">
           <div id="section" class="col-12 mt-5">
 
