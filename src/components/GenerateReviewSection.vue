@@ -1,11 +1,9 @@
 <template>
   <div class="container my-5">
-    <h2 class="text-center mb-4">Customer Reviews</h2>
-
     <div class="card mb-4">
       <div class="card-body">
-        <h5 class="card-title">Leave a Review</h5>
-        <form @submit.prevent="generateReview">
+        <h5 class="card-title">Write a better review</h5>
+        <form @submit.prevent="generateReview" class="text-start">
           <div class="mb-3">
             <label for="name" class="form-label">Name</label>
             <input type="text" class="form-control" id="name" v-model="form.name" required>
@@ -55,7 +53,7 @@
               <option value="neutral">Neutral</option>
             </select>
           </div>
-          <button type="submit" class="btn btn-primary">Generate Review</button>
+          <button type="submit" class="btn rounded-pill btn-grad text-dark fw-bold m-0">Generate Review</button>
         </form>
       </div>
     </div>
@@ -71,6 +69,19 @@
 </template>
 
 <style scoped>
+.btn-grad {
+            background-image: linear-gradient(to right, #AAFFA9 0%, #11FFBD  51%, #AAFFA9  100%);
+            text-align: center;
+            transition: 0.5s;
+            background-size: 200% auto;
+          }
+
+          .btn-grad:hover {
+            background-position: right center; /* change the direction of the change here */
+            color: #fff;
+            text-decoration: none;
+          }
+         
 .reviews {
   max-height: 400px;
   overflow-y: auto;
