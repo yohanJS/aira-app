@@ -7,12 +7,16 @@
           <div class="mb-3 pt-3">
             <label class="form-label">Enter product or service</label>
             <input class="form-control" type="text" placeholder="'iPhone 13', 'Pepsi', 'Restaurant Bahama Breeze.'" v-model="productOrService">
-            <span v-if="displaySpinnerMessage">
+            <button class="btn rounded-pill btn-grad text-dark fw-bold m-0 mt-3" v-if="!positiveWords.length || !negativeWords.length">
+              <div v-if="!displaySpinnerMessage">
+                Generate words
+              </div>
+              <span v-if="displaySpinnerMessage">
               <div class="spinner-border spinner-border-sm text-dark" role="status">
                 <span class="visually-hidden">Loading...</span>
               </div>
             </span>
-            <button class="btn rounded-pill btn-grad text-dark fw-bold m-0 mt-3" v-if="!positiveWords.length || !negativeWords.length">Generate words</button>
+            </button>
           </div>
           <div class="mt-4">
             <div v-if="positiveWords.length > 0">
