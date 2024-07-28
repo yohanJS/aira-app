@@ -39,7 +39,7 @@
         </form>
         <div class="col-xs-12 col-md-6 text-start mt-0 m-3">
           <button class="btn rounded-pill btn-grad text-dark fw-bold m-0 mt-3"
-            v-if="positiveWords.length > 0 || negativeWords.length > 0" @click="generateReview">
+          v-if="positiveWords.length > 0 || negativeWords.length > 0" @click="generateReview">
             Generate review
             <span v-if="displaySpinnerMessage">
               <div class="spinner-border spinner-border-sm text-dark" role="status">
