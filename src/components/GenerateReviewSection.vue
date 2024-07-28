@@ -118,7 +118,7 @@ export default {
             }
           ]
         };
-        const { data } = await axios.post(localApiEndPoint, payload, {
+        const { data } = await axios.post(prdApiEndPoint, payload, {
           headers: {
             'Content-Type': 'application/json'
           }
