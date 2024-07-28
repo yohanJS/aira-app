@@ -120,7 +120,8 @@ export default {
         };
         const { data } = await axios.post(prdApiEndPoint, payload, {
           headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': 'https://aira-app.netlify.app'
           }
         });
         this.displaySpinnerMessage = false;
