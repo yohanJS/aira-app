@@ -133,15 +133,17 @@ export default {
 
 .bubble.positive {
   background-color: #a4e6a6;
+  color: #000;
 }
 
 .bubble.negative {
   background-color: #ffb3b3;
+  color: #fff;
 }
 
 .bubble.selected {
-  background-image: linear-gradient(to right, #FAD0C4 0%, #FFD1FF 100%);
-  color: #040404;
+  background-image: linear-gradient(to right, #A8E6CF 0%, #D0E1F9 100%);
+  color: #000;
 }
 
 .bubble:hover {
