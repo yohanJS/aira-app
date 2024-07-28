@@ -114,7 +114,7 @@ export default {
             {
               id: 0,
               role: "",
-              content: this.productOrService + this.positiveWords + this.negativeWords
+              content: this.productOrService + " " + this.positiveWords + this.negativeWords
             }
           ]
         };
