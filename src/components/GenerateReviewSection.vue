@@ -6,32 +6,52 @@
         <form class="p-4 text-start" @submit.prevent="generateWords">
           <div class="mb-3 pt-3">
             <label class="form-label">Enter product or service</label>
-            <input class="form-control" type="text" placeholder="'iPhone 13', 'Pepsi', 'Restaurant Bahama Breeze.'" v-model="productOrService">
-            <button class="btn rounded-pill btn-grad text-dark fw-bold m-0 mt-3" v-if="!positiveWords.length || !negativeWords.length">
+            <input class="form-control" type="text" placeholder="'iPhone 13', 'Pepsi', 'Restaurant Bahama Breeze.'"
+              v-model="productOrService">
+            <button class="btn rounded-pill btn-grad text-dark fw-bold m-0 mt-3"
+              v-if="!positiveWords.length || !negativeWords.length">
               <div v-if="!displaySpinnerMessage">
                 Generate words
               </div>
               <span v-if="displaySpinnerMessage">
-              <div class="spinner-border spinner-border-sm text-dark" role="status">
-                <span class="visually-hidden">Loading...</span>
-              </div>
-            </span>
+                <div class="spinner-border spinner-border-sm text-dark" role="status">
+                  <span class="visually-hidden">Loading...</span>
+                </div>
+              </span>
             </button>
           </div>
           <div class="mt-4">
             <div v-if="positiveWords.length > 0">
               <div class="word-bubbles">
-                <span v-for="word in positiveWords" :key="word" :class="['bubble', 'positive', { selected: selectedPositiveWords.includes(word) }]" @click="toggleWord(word, 'positive')">{{ word }}</span>
+                <span v-for="word in positiveWords" :key="word"
+                  :class="['bubble', 'positive', { selected: selectedPositiveWords.includes(word) }]"
+                  @click="toggleWord(word, 'positive')">{{ word }}</span>
               </div>
             </div>
             <div class="mt-3" v-if="negativeWords.length > 0">
               <div class="word-bubbles">
-                <span v-for="word in negativeWords" :key="word" :class="['bubble', 'negative', { selected: selectedNegativeWords.includes(word) }]" @click="toggleWord(word, 'negative')">{{ word }}</span>
+                <span v-for="word in negativeWords" :key="word"
+                  :class="['bubble', 'negative', { selected: selectedNegativeWords.includes(word) }]"
+                  @click="toggleWord(word, 'negative')">{{ word }}</span>
               </div>
             </div>
           </div>
-          <button class="btn rounded-pill btn-grad text-dark fw-bold m-0 mt-4" v-if="positiveWords.length > 0 || negativeWords.length > 0">Generate review</button>
         </form>
+        <div class="col-xs-12 col-md-6 text-start mt-0 m-3">
+          <button class="btn rounded-pill btn-grad text-dark fw-bold m-0 mt-3"
+            v-if="positiveWords.length > 0 || negativeWords.length > 0" @click="generateReview">
+            Generate review
+            <span v-if="displaySpinnerMessage">
+              <div class="spinner-border spinner-border-sm text-dark" role="status">
+                <span class="visually-hidden">Loading...</span>
+              </div>
+            </span>
+          </button>
+          <div class="box" v-if="generatedReview">
+            <p class="content">{{ generatedReview }}</p>
+            <button class="copy-button" @click="copyText">Copy</button>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -48,7 +68,8 @@ export default {
       positiveWords: [],
       negativeWords: [],
       selectedPositiveWords: [],
-      selectedNegativeWords: []
+      selectedNegativeWords: [],
+      generatedReview: null
     }
   },
   methods: {
@@ -80,6 +101,35 @@ export default {
         this.words = 'Error! Could not reach the API. ' + error
       }
     },
+    async generateReview() {
+      try {
+        this.displaySpinnerMessage = true;
+        const localApiEndPoint = "https://localhost:7165/GenerateReview"
+        const prdApiEndPoint = "https://www.bloggyapi.com/api/GenerateReview"
+        const positiveWordsString = this.selectedPositiveWords.join(' ');
+        const negativeWordsString = this.selectedNegativeWords.join(' ');
+        const payload = {
+          model: "",
+          messages: [
+            {
+              id: 0,
+              role: "",
+              content: this.productOrService + this.positiveWords + this.negativeWords
+            }
+          ]
+        };
+        const { data } = await axios.post(prdApiEndPoint, payload, {
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        });
+        this.displaySpinnerMessage = false;
+        this.generatedReview = data;
+      } catch (error) {
+        console.log(error);
+        this.words = 'Error! Could not reach the API. ' + error
+      }
+    },
     toggleWord(word, type) {
       if (type === 'positive') {
         const index = this.selectedPositiveWords.indexOf(word);
@@ -96,6 +146,14 @@ export default {
           this.selectedNegativeWords.push(word);
         }
       }
+    },
+    copyText() {
+      const textToCopy = this.generatedReview;
+      navigator.clipboard.writeText(textToCopy).then(() => {
+        alert('Copied to clipboard');
+      }).catch(err => {
+        console.error('Failed to copy text: ', err);
+      });
     }
   }
 }
@@ -168,5 +226,37 @@ export default {
 .reviews {
   max-height: 400px;
   overflow-y: auto;
+}
+
+.box {
+  border: 1px solid #ccc;
+  padding: 20px;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+  width: 100%;
+  max-width: 400px;
+  margin: 20px auto;
+  position: relative;
+}
+
+.copy-button {
+  top: 10px;
+  right: 10px;
+  padding: 5px 10px;
+  background-color: #b3e5fc;
+  /* Pastel blue */
+  color: #000;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.copy-button:hover {
+  background-color: #81d4fa;
+  /* Slightly darker pastel blue */
+}
+
+.content {
+  word-wrap: break-word;
 }
 </style>
