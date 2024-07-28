@@ -104,8 +104,8 @@ export default {
     async generateReview() {
       try {
         this.displaySpinnerMessage = true;
-        const localApiEndPoint = "https://localhost:7165/GenerateReview"
-        const prdApiEndPoint = "https://www.bloggyapi.com/GenerateReview"
+        const localApiEndPoint = "https://localhost:7165/api/GenerateReview"
+        const prdApiEndPoint = "https://www.bloggyapi.com/api/GenerateReview"
         const positiveWordsString = this.selectedPositiveWords.join(' ');
         const negativeWordsString = this.selectedNegativeWords.join(' ');
         const payload = {
@@ -119,10 +119,6 @@ export default {
           ]
         };
         const { data } = await axios.post(prdApiEndPoint, payload, {
-          headers: {
-            'Content-Type': 'application/json',
-            'Access-Control-Allow-Origin': 'https://aira-app.netlify.app'
-          }
         });
         this.displaySpinnerMessage = false;
         this.generatedReview = data;
