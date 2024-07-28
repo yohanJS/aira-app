@@ -26,7 +26,7 @@
               </div>
             </div>
           </div>
-          <button class="btn rounded-pill btn-grad text-dark fw-bold m-0 mt-4">Generate review</button>
+          <button class="btn rounded-pill btn-grad text-dark fw-bold m-0 mt-4" v-if="positiveWords.length > 0 || negativeWords.length > 0">Generate review</button>
         </form>
       </div>
     </div>
@@ -54,7 +54,7 @@ export default {
         this.displaySpinnerMessage = true
         const localApiEndPoint = "https://localhost:7165/api/GenerateWords"
         const prdApiEndPoint = "https://www.bloggyapi.com/api/GenerateWords"
-        const { data } = await axios.post(localApiEndPoint, {
+        const { data } = await axios.post(prdApiEndPoint, {
           productOrService: this.productOrService
         });
         this.displaySpinnerMessage = false;
