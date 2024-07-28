@@ -105,7 +105,7 @@ export default {
       try {
         this.displaySpinnerMessage = true;
         const localApiEndPoint = "https://localhost:7165/GenerateReview"
-        const prdApiEndPoint = "https://www.bloggyapi.com/api/GenerateReview"
+        const prdApiEndPoint = "https://www.bloggyapi.com/GenerateReview"
         const positiveWordsString = this.selectedPositiveWords.join(' ');
         const negativeWordsString = this.selectedNegativeWords.join(' ');
         const payload = {
