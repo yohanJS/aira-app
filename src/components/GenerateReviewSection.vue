@@ -114,11 +114,11 @@ export default {
             {
               id: 0,
               role: "",
-              content: this.productOrService + " " + this.positiveWords + this.negativeWords
+              content: "product or service: " + this.productOrService + ". Words: " + this.positiveWords + this.negativeWords
             }
           ]
         };
-        const { data } = await axios.post(prdApiEndPoint, payload, {
+        const { data } = await axios.post(localApiEndPoint, payload, {
           headers: {
             'Content-Type': 'application/json'
           }
