@@ -1,12 +1,12 @@
 <template>
-  <div class="container-fluid bg-light pt-5 pb-5">
+  <div class="container-fluid bg-light pt-5 pb-5" id="generateReviewSection">
     <div class="row d-flex justify-content-center mb-4">
       <div class="col-xs-12 col-md-6">
-        <h5 class="display-6 m-0">Write a better review</h5>
-        <form class="p-4 text-start" @submit.prevent="generateWords">
+        <h5 class="display-6 text-start">Write a better review</h5>
+        <form class="p-2 text-start" @submit.prevent="generateWords">
           <div class="mb-3 pt-3">
-            <label class="form-label">Enter product or service</label>
-            <input class="form-control" type="text" placeholder="'iPhone 13', 'Pepsi', 'Restaurant Bahama Breeze.'"
+            <label class="form-label">Enter a product or service:</label>
+            <input class="form-control" type="text"
               v-model="productOrService">
             <button class="btn rounded-pill btn-grad text-dark fw-bold m-0 mt-3"
               v-if="!positiveWords.length || !negativeWords.length">
