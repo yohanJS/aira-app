@@ -8,8 +8,7 @@
             <label class="form-label">Enter a product or service:</label>
             <input class="form-control" type="text"
               v-model="productOrService">
-            <button class="btn rounded-pill btn-grad text-dark fw-bold m-0 mt-3"
-              v-if="!positiveWords.length || !negativeWords.length">
+            <button class="btn rounded-pill btn-grad text-dark fw-bold m-0 mt-3">
               <div v-if="!displaySpinnerMessage">
                 Generate words
               </div>
@@ -74,13 +73,13 @@ export default {
   },
   methods: {
     async generateWords() {
-      this.words = 'Generating words..'
       try {
+        var words = this.positiveWords.join(", ") + this.negativeWords.join(", ")
         this.displaySpinnerMessage = true
         const localApiEndPoint = "https://localhost:7165/api/GenerateWords"
         const prdApiEndPoint = "https://www.bloggyapi.com/api/GenerateWords"
         const { data } = await axios.post(prdApiEndPoint, {
-          productOrService: this.productOrService
+          productOrService: this.productOrService + " Previous words: " + words
         });
         this.displaySpinnerMessage = false;
         const regex = /(Positive|Negative):\s*([a-z, ]+)/gi;

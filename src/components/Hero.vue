@@ -1,5 +1,5 @@
 <template>
-  <div class="container-fluid">
+  <div class="container-fluid shadow-lg">
     <div class="row g-0">
       <div class="col-md-12 position-relative">
         <div class="row pt-5 d-flex flex-column bg-color align-items-center text-center text-white"

@@ -1,6 +1,6 @@
 <template>
   <!--MOBILE VERSION-->
-  <nav id="home" class="navbar p-0 bg-light" v-if="isMobile">
+  <nav id="home" class="navbar p-0 bg-light shadow-lg" v-if="isMobile">
     <div class="container-fluid">
       <a class="navbar-brand" href="#">
         Aira
@@ -69,7 +69,7 @@
       </div>
     </div>
   </nav>
-  <nav id="home" class="navbar-custom bg-color" v-else>
+  <nav id="home" class="navbar-custom bg-color shadow-lg" v-else>
     <div class="container-fluid">
       <div class="row text-dark">
         <div class="col-4 d-flex justify-content-center align-items-center">
