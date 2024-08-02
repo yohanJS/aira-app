@@ -49,8 +49,8 @@
             </span>
           </button>
           <div class="box mt-3 shadow-lg" v-if="generatedReview">
-            <p class="content">{{ generatedReview }}</p>
-            <button class="copy-button" @click="copyText">Copy</button>
+            <textarea v-model="generatedReview" class="content bg-light text-dark form-control border-none" rows="10" cols="50"></textarea>
+            <button class="copy-button mt-3" @click="copyText">Copy</button>
           </div>
         </div>
       </div>
