@@ -39,7 +39,9 @@
         <div class="col-xs-12 text-start mt-0 p-2">
           <button class="btn rounded-pill btn-grad text-dark fw-bold m-0 mt-3"
           v-if="positiveWords.length > 0 || negativeWords.length > 0" @click="generateReview">
-            Generate review
+            <div v-if="!displaySpinnerReview">
+              Generate review
+            </div>
             <span v-if="displaySpinnerReview">
               <div class="spinner-border spinner-border-sm text-dark" role="status">
                 <span class="visually-hidden">Loading...</span>
