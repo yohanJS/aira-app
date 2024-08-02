@@ -1,5 +1,5 @@
 <template>
-  <div class="container-fluid bg-light pt-5 pb-5" id="generateReviewSection">
+  <div class="container-fluid bg-light pt-5 pb-5 shadow-lg" id="generateReviewSection">
     <div class="row d-flex justify-content-center mb-4">
       <div class="col-xs-12 col-md-6">
         <h5 class="display-6 text-start">Write a better review</h5>
@@ -9,10 +9,10 @@
             <input class="form-control" type="text"
               v-model="productOrService">
             <button class="btn rounded-pill btn-grad text-dark fw-bold m-0 mt-3">
-              <div v-if="!displaySpinnerMessage">
+              <div v-if="!displaySpinnerWord">
                 Generate words
               </div>
-              <span v-if="displaySpinnerMessage">
+              <span v-if="displaySpinnerWord">
                 <div class="spinner-border spinner-border-sm text-dark" role="status">
                   <span class="visually-hidden">Loading...</span>
                 </div>
@@ -36,17 +36,17 @@
             </div>
           </div>
         </form>
-        <div class="col-xs-12 col-md-6 text-start mt-0 m-3">
+        <div class="col-xs-12 text-start mt-0 p-2">
           <button class="btn rounded-pill btn-grad text-dark fw-bold m-0 mt-3"
           v-if="positiveWords.length > 0 || negativeWords.length > 0" @click="generateReview">
             Generate review
-            <span v-if="displaySpinnerMessage">
+            <span v-if="displaySpinnerReview">
               <div class="spinner-border spinner-border-sm text-dark" role="status">
                 <span class="visually-hidden">Loading...</span>
               </div>
             </span>
           </button>
-          <div class="box" v-if="generatedReview">
+          <div class="box mt-3 shadow-lg" v-if="generatedReview">
             <p class="content">{{ generatedReview }}</p>
             <button class="copy-button" @click="copyText">Copy</button>
           </div>
@@ -63,7 +63,8 @@ export default {
   data() {
     return {
       productOrService: null,
-      displaySpinnerMessage: false,
+      displaySpinnerWord: false,
+      displaySpinnerReview: false,
       positiveWords: [],
       negativeWords: [],
       selectedPositiveWords: [],
@@ -75,13 +76,13 @@ export default {
     async generateWords() {
       try {
         var words = this.positiveWords.join(", ") + this.negativeWords.join(", ")
-        this.displaySpinnerMessage = true
+        this.displaySpinnerWord = true
         const localApiEndPoint = "https://localhost:7165/api/GenerateWords"
         const prdApiEndPoint = "https://www.bloggyapi.com/api/GenerateWords"
         const { data } = await axios.post(prdApiEndPoint, {
           productOrService: this.productOrService + " Previous words: " + words
         });
-        this.displaySpinnerMessage = false;
+        this.displaySpinnerWord = false;
         const regex = /(Positive|Negative):\s*([a-z, ]+)/gi;
         const matches = data.match(regex);
 
@@ -96,13 +97,13 @@ export default {
           }
         });
       } catch (error) {
-        this.displaySpinnerMessage = false;
+        this.displaySpinnerWord = false;
         this.words = 'Error! Could not reach the API. ' + error
       }
     },
     async generateReview() {
       try {
-        this.displaySpinnerMessage = true;
+        this.displaySpinnerReview = true;
         const localApiEndPoint = "https://localhost:7165/api/GenerateReview"
         const prdApiEndPoint = "https://www.bloggyapi.com/api/GenerateReview"
         const positiveWordsString = this.selectedPositiveWords.join(' ');
@@ -119,7 +120,7 @@ export default {
         };
         const { data } = await axios.post(prdApiEndPoint, payload, {
         });
-        this.displaySpinnerMessage = false;
+        this.displaySpinnerReview = false;
         this.generatedReview = data;
       } catch (error) {
         console.log(error);
@@ -225,34 +226,28 @@ export default {
 }
 
 .box {
-  border: 1px solid #ccc;
   padding: 20px;
   border-radius: 5px;
   background-color: #f9f9f9;
-  width: 100%;
-  max-width: 400px;
-  margin: 20px auto;
-  position: relative;
 }
 
 .copy-button {
   top: 10px;
   right: 10px;
-  padding: 5px 10px;
+  padding: 5px 40px;
   background-color: #b3e5fc;
-  /* Pastel blue */
   color: #000;
   border: none;
-  border-radius: 10px;
+  border-radius: 20px;
   cursor: pointer;
 }
 
 .copy-button:hover {
   background-color: #81d4fa;
-  /* Slightly darker pastel blue */
 }
 
 .content {
   word-wrap: break-word;
+  letter-spacing: 0.02rem;
 }
 </style>
