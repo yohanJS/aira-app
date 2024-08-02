@@ -105,18 +105,17 @@ export default {
     },
     async generateReview() {
       try {
+        var reviewGenerated = this.generatedReview;
         this.displaySpinnerReview = true;
         const localApiEndPoint = "https://localhost:7165/api/GenerateReview"
         const prdApiEndPoint = "https://www.bloggyapi.com/api/GenerateReview"
-        const positiveWordsString = this.selectedPositiveWords.join(' ');
-        const negativeWordsString = this.selectedNegativeWords.join(' ');
         const payload = {
           model: "",
           messages: [
             {
               id: 0,
               role: "",
-              content: "product or service: " + this.productOrService + ". Words: " + this.positiveWords + this.negativeWords
+              content: "product or service: " + this.productOrService + ". Words: " + this.positiveWords + this.negativeWords + ". Previous review: " + reviewGenerated
             }
           ]
         };
