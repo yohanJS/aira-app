@@ -1,8 +1,7 @@
 <template>
-  <div class="container-fluid bg-light pt-5 pb-5 shadow-lg" id="generateReviewSection">
-    <div class="row d-flex justify-content-center mb-4">
+    <div class="row d-flex justify-content-center">
       <div class="col-xs-12 col-md-6">
-        <h5 class="display-6 text-start">Write a better review</h5>
+        <h5 class="display-6 text-center fw-bold">Write a better review</h5>
         <form class="p-2 text-start" @submit.prevent="generateWords">
           <div class="mb-3 pt-3">
             <label class="form-label">Enter a product or service:</label>
@@ -55,7 +54,6 @@
         </div>
       </div>
     </div>
-  </div>
 </template>
 
 
@@ -71,22 +69,25 @@ export default {
       negativeWords: [],
       selectedPositiveWords: [],
       selectedNegativeWords: [],
-      generatedReview: null
+      generatedReview: null,
+      previousWords: ""
     }
   },
   methods: {
     async generateWords() {
       try {
+        console.log(this.previousWords);
         var words = this.positiveWords.join(", ") + this.negativeWords.join(", ")
         this.displaySpinnerWord = true
         const localApiEndPoint = "https://localhost:7165/api/GenerateWords"
         const prdApiEndPoint = "https://www.bloggyapi.com/api/GenerateWords"
         const { data } = await axios.post(prdApiEndPoint, {
-          productOrService: this.productOrService + " Previous words: " + words
+          productOrService: this.productOrService + " Previous words: " + this.previousWords
         });
         this.displaySpinnerWord = false;
         const regex = /(Positive|Negative):\s*([a-z, ]+)/gi;
         const matches = data.match(regex);
+        this.previousWords += ", " + data;
 
         matches.forEach(match => {
           const [category, words] = match.split(':').map(part => part.trim());
