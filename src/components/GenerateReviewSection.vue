@@ -1,59 +1,62 @@
 <template>
-    <div class="row d-flex justify-content-center">
-      <div class="col-xs-12 col-md-6">
-        <h5 class="display-6 text-center fw-bold">Write a better review</h5>
-        <form class="p-2 text-start" @submit.prevent="generateWords">
-          <div class="mb-3 pt-3">
-            <label class="form-label">Enter a product or service:</label>
-            <input class="form-control" type="text"
-              v-model="productOrService">
-            <button class="btn rounded-pill btn-grad text-dark fw-bold m-0 mt-3">
-              <div v-if="!displaySpinnerWord">
-                Generate words
-              </div>
-              <span v-if="displaySpinnerWord">
-                <div class="spinner-border spinner-border-sm text-dark" role="status">
-                  <span class="visually-hidden">Loading...</span>
-                </div>
-              </span>
-            </button>
+  <form @submit.prevent="generateWords">
+    <div class="mb-3 pt-3">
+      <label class="form-label">Enter a product or service:</label>
+      <div class="row d-flex justify-content-center">
+        <div class="col-8 p-0">
+        <input class="form-control" type="text" v-model="productOrService">
+      </div>
+      <div class="col-2 p-0">
+        <button class="btn rounded-pill btn-grad text-dark fw-bold m-0">
+        <div v-if="!displaySpinnerWord">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-send" viewBox="0 0 16 16">
+            <path d="M15.854.146a.5.5 0 0 1 .11.54l-5.819 14.547a.75.75 0 0 1-1.329.124l-3.178-4.995L.643 7.184a.75.75 0 0 1 .124-1.33L15.314.037a.5.5 0 0 1 .54.11ZM6.636 10.07l2.761 4.338L14.13 2.576zm6.787-8.201L1.591 6.602l4.339 2.76z"/>
+          </svg>
+        </div>
+        <span v-if="displaySpinnerWord">
+          <div class="spinner-border spinner-border-sm text-dark" role="status">
+            <span class="visually-hidden">Loading...</span>
           </div>
-          <div class="mt-4">
-            <div v-if="positiveWords.length > 0">
-              <div class="word-bubbles">
-                <span v-for="word in positiveWords" :key="word"
-                  :class="['bubble', 'positive', { selected: selectedPositiveWords.includes(word) }]"
-                  @click="toggleWord(word, 'positive')">{{ word }}</span>
-              </div>
-            </div>
-            <div class="mt-3" v-if="negativeWords.length > 0">
-              <div class="word-bubbles">
-                <span v-for="word in negativeWords" :key="word"
-                  :class="['bubble', 'negative', { selected: selectedNegativeWords.includes(word) }]"
-                  @click="toggleWord(word, 'negative')">{{ word }}</span>
-              </div>
-            </div>
-          </div>
-        </form>
-        <div class="col-xs-12 text-start mt-0 p-2">
-          <button class="btn rounded-pill btn-grad text-dark fw-bold m-0 mt-3"
-          v-if="positiveWords.length > 0 || negativeWords.length > 0" @click="generateReview">
-            <div v-if="!displaySpinnerReview">
-              Generate review
-            </div>
-            <span v-if="displaySpinnerReview">
-              <div class="spinner-border spinner-border-sm text-dark" role="status">
-                <span class="visually-hidden">Loading...</span>
-              </div>
-            </span>
-          </button>
-          <div class="box mt-3 shadow-lg" v-if="generatedReview">
-            <textarea v-model="generatedReview" class="content bg-light text-dark form-control border-none" rows="10" cols="50"></textarea>
-            <button class="copy-button mt-3" @click="copyText">Copy</button>
-          </div>
+        </span>
+      </button>
+      </div>
+      </div>
+    </div>
+    <div class="mt-4">
+      <div v-if="positiveWords.length > 0">
+        <div class="word-bubbles">
+          <span v-for="word in positiveWords" :key="word"
+            :class="['bubble', 'positive', { selected: selectedPositiveWords.includes(word) }]"
+            @click="toggleWord(word, 'positive')">{{ word }}</span>
+        </div>
+      </div>
+      <div class="mt-3" v-if="negativeWords.length > 0">
+        <div class="word-bubbles">
+          <span v-for="word in negativeWords" :key="word"
+            :class="['bubble', 'negative', { selected: selectedNegativeWords.includes(word) }]"
+            @click="toggleWord(word, 'negative')">{{ word }}</span>
         </div>
       </div>
     </div>
+  </form>
+  <div class="col-xs-12 mt-0 p-2">
+    <button class="btn rounded-pill btn-grad text-dark fw-bold m-0 mt-3"
+      v-if="positiveWords.length > 0 || negativeWords.length > 0" @click="generateReview">
+      <div v-if="!displaySpinnerReview">
+        Generate review
+      </div>
+      <span v-if="displaySpinnerReview">
+        <div class="spinner-border spinner-border-sm text-dark" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+      </span>
+    </button>
+    <div class="box mt-3 shadow-lg" v-if="generatedReview">
+      <textarea v-model="generatedReview" class="content bg-light text-dark form-control border-none" rows="10"
+        cols="50"></textarea>
+      <button class="copy-button mt-3" @click="copyText">Copy</button>
+    </div>
+  </div>
 </template>
 
 
@@ -164,7 +167,6 @@ export default {
   background-image: linear-gradient(to right, #AAFFA9 0%, #11FFBD 51%, #AAFFA9 100%);
   text-align: center;
   transition: 0.5s;
-  background-size: 200% auto;
 }
 
 .btn-grad:hover {
