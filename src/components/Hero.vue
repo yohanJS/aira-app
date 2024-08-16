@@ -29,20 +29,23 @@ export default {
 </script>
 
 <template>
-  <div class="container-fluid p-0">
-    <div class="row g-0 bg-color min-vh-100 d-flex">
-      <div class="col-12 align-content-center">
-        <h1 class="display-2 btn-text-color fw-size-400 mt-5">Meet Aira, Your Review Tool</h1>
+  <div class="container-fluid p-0 d-flex flex-column min-vh-100">
+    <div class="row g-0 bg-color flex-grow-1 d-flex align-items-center justify-content-center">
+      <div class="col-12 text-center">
+        <h1 class="display-2 btn-text-color fw-size-400 mt-5">
+          Meet Aira, Your Review Tool
+        </h1>
       </div>
-      <div class="col-md-12">
+      <div class="col-md-12 text-center">
         <p id="welcomeMsg" class="mt-4 pb-3 btn-text-color fw-size-600">
           Revolutionize Your Reviews with AI
         </p>
-        <!-- <button class="btn rounded-pill btn-dark text-light fw-bold m-0"
-              onclick="window.location.href='#generateReviewSection'">Explore AI</button> -->
       </div>
-      <div class="col-md-12 bg-light text-dark pt-3">
-        <GenerateReviewSection></GenerateReviewSection>
+    </div>
+    <!-- Placing GenerateReviewSection at the bottom -->
+    <div class="row g-0">
+      <div class="col-md-12">
+        <GenerateReviewSection />
       </div>
     </div>
   </div>
@@ -63,9 +66,7 @@ export default {
 
 .glass-button {
   background-color: rgba(255, 255, 255, 0.1);
-  /* Adjust the opacity (0.3) as needed */
   backdrop-filter: blur(10px);
-  /* Adjust the blur value as needed */
 }
 
 .fw-size-400 {
@@ -79,4 +80,24 @@ export default {
 .mr-r {
   margin-right: 20px;
 }
+
+/* Ensure the GenerateReviewSection stays at the bottom */
+.container-fluid {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.flex-grow-1 {
+  flex-grow: 1;
+}
+
+.row.g-0 {
+  margin: 0;
+}
+
+h1, p {
+  text-align: center;
+}
 </style>
+
