@@ -42,7 +42,7 @@ export default {
               onclick="window.location.href='#generateReviewSection'">Explore AI</button> -->
       </div>
       <div class="col-md-12 bg-light text-dark pt-3">
-        <GenerateReviewSection></GenerateReviewSection>
+        <!-- <GenerateReviewSection></GenerateReviewSection> -->
       </div>
     </div>
   </div>
