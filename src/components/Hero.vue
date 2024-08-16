@@ -30,6 +30,7 @@ export default {
 
 <template>
   <div class="container-fluid p-0 d-flex flex-column min-vh-100">
+    <!-- Main content area that grows and pushes GenerateReviewSection down -->
     <div class="row g-0 bg-color flex-grow-1 d-flex align-items-center justify-content-center">
       <div class="col-12 text-center">
         <h1 class="display-2 btn-text-color fw-size-400 mt-5">
@@ -40,11 +41,13 @@ export default {
         <p id="welcomeMsg" class="mt-4 pb-3 btn-text-color fw-size-600">
           Revolutionize Your Reviews with AI
         </p>
+        <!-- More content will be displayed here -->
       </div>
     </div>
-    <!-- Placing GenerateReviewSection at the bottom -->
+
+    <!-- GenerateReviewSection always visible at the bottom -->
     <div class="row g-0">
-      <div class="col-md-12">
+      <div class="col-12">
         <GenerateReviewSection />
       </div>
     </div>
@@ -86,10 +89,12 @@ export default {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  overflow-y: auto;
 }
 
 .flex-grow-1 {
   flex-grow: 1;
+  overflow-y: auto;
 }
 
 .row.g-0 {
