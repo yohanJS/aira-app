@@ -31,8 +31,8 @@ export default {
 <template>
   <div class="container-fluid p-0">
     <!-- Main content area that grows and pushes GenerateReviewSection down -->
-    <div class="row g-0 bg-color d-flex align-items-center justify-content-center min-vh-100">
-      <div class="col-12 text-center">
+    <div class="row g-0 bg-color d-flex justify-content-center vh-100">
+      <div class="col-12 text-center align-self-center">
         <h1 class="display-2 btn-text-color fw-size-400 mt-5">
           Meet Aira, Your Review Tool
         </h1>
@@ -41,7 +41,6 @@ export default {
         <p id="welcomeMsg" class="mt-4 pb-3 btn-text-color fw-size-600">
           Revolutionize Your Reviews with AI
         </p>
-        <!-- More content will be displayed here -->
       </div>
       <div class="col-md-12">
         <GenerateReviewSection />
