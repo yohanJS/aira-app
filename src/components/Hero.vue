@@ -29,9 +29,9 @@ export default {
 </script>
 
 <template>
-  <div class="container-fluid p-0 d-flex flex-column min-vh-100">
+  <div class="container-fluid p-0">
     <!-- Main content area that grows and pushes GenerateReviewSection down -->
-    <div class="row g-0 bg-color flex-grow-1 d-flex align-items-center justify-content-center">
+    <div class="row g-0 bg-color d-flex align-items-center justify-content-center min-vh-100">
       <div class="col-12 text-center">
         <h1 class="display-2 btn-text-color fw-size-400 mt-5">
           Meet Aira, Your Review Tool
