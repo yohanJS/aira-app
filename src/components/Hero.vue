@@ -42,7 +42,7 @@ export default {
           Revolutionize Your Reviews with AI
         </p>
       </div>
-      <div class="col-md-12">
+      <div class="col-md-12 bg-light">
         <GenerateReviewSection />
       </div>
     </div>
