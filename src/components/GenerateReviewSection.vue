@@ -2,7 +2,7 @@
   <form @submit.prevent="generateWords">
     <div class="mb-3 pt-3 m-2">
       <div class="d-flex align-items-center">
-        <input class="form-control me-2" type="text" v-model="productOrService" placeholder="Enter product or service">
+        <input class="form-control me-2" type="text" v-model="productOrService" @blur="handleInputBlur" placeholder="Enter product or service">
         <button class="btn rounded-pill btn-grad text-dark fw-bold" type="submit">
           <div v-if="!displaySpinnerWord">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-send"
@@ -158,6 +158,13 @@ export default {
       }).catch(err => {
         console.error('Failed to copy text: ', err);
       });
+    },
+    handleInputBlur() {
+    // Scroll the window to the top to remove any white space
+    window.scrollTo(0, 0);
+    
+    // Alternatively, reset the body's height to avoid white space
+    document.body.style.height = '100vh';
     }
   }
 }

@@ -32,9 +32,6 @@ body {
   padding: 0px;
   width: 100vw;
 }
-body.no-scroll {
-  overflow: hidden;
-}
 
 h1 {
   font-size: 3.2em;
