@@ -43,11 +43,7 @@ export default {
         </p>
         <!-- More content will be displayed here -->
       </div>
-    </div>
-
-    <!-- GenerateReviewSection always visible at the bottom -->
-    <div class="row g-0">
-      <div class="col-12">
+      <div class="col-md-12">
         <GenerateReviewSection />
       </div>
     </div>

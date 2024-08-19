@@ -36,7 +36,7 @@
       </div>
     </div>
   </form>
-  <div class="col-xs-12 mt-0 p-2">
+  <div class="col-xs-12 mt-0">
     <button class="btn rounded-pill btn-grad text-dark fw-bold m-0 mt-3"
       v-if="positiveWords.length > 0 || negativeWords.length > 0" @click="generateReview">
       <div v-if="!displaySpinnerReview">
