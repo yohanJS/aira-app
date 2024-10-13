@@ -34,12 +34,12 @@ export default {
     <div class="row g-0 bg-color d-flex justify-content-center vh-100">
       <div class="col-12 text-center align-self-center">
         <h1 class="display-2 btn-text-color fw-size-400 mt-5">
-          Meet Aira, Your Review Tool
+          Meet Luvo AI
         </h1>
       </div>
       <div class="col-md-12 text-center">
-        <p id="welcomeMsg" class="mt-4 pb-3 btn-text-color fw-size-600">
-          Revolutionize Your Reviews with AI
+        <p id="welcomeMsg" class="pb-3 btn-text-color fw-size-600">
+          Your AI review assistant
         </p>
       </div>
       <div class="col-md-12 bg-light">
