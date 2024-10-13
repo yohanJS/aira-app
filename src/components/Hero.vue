@@ -29,7 +29,7 @@ export default {
 </script>
 
 <template>
-  <div class="container-fluid p-0">
+  <div class="container-fluid p-0 rounded-3">
     <!-- Main content area that grows and pushes GenerateReviewSection down -->
     <div class="row g-0 bg-color d-flex justify-content-center vh-100">
       <div class="col-12 text-center align-self-center">
