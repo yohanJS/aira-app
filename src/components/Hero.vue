@@ -34,7 +34,7 @@ export default {
     <div class="row g-0 bg-color d-flex justify-content-center vh-100">
       <div class="col-12 text-center align-self-center">
         <h1 class="display-2 btn-text-color fw-size-400 mt-5">
-          Meet Luvo AI
+          Meet LuvoAI
         </h1>
       </div>
       <div class="col-md-12 text-center">

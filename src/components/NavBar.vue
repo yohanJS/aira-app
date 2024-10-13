@@ -3,7 +3,7 @@
   <nav id="home" class="navbar p-0 bg-light shadow-lg" v-if="isMobile">
     <div class="container-fluid">
       <a class="navbar-brand" href="#">
-        Luvo AI
+        LuvoAI
       </a>
       <button class="navbar-toggler p-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
         aria-controls="offcanvasNavbar">
@@ -19,7 +19,7 @@
       <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
         <div class="offcanvas-header secondary-bg-color p-2">
           <h5 class="offcanvas-title" id="offcanvasNavbarLabel">
-            Luvo AI
+            LuvoAI
           </h5>
           <a href="#" class="nav-link m-2">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-tiktok"
@@ -80,7 +80,7 @@
         </div>
         <div class="col-3 d-flex justify-content-center align-items-center">
           <a class="display-6 text-dark" href="#">
-            Luvo AI
+            LuvoAI
           </a>
         </div>
         <div class="col-5 d-flex justify-content-center align-items-center">
