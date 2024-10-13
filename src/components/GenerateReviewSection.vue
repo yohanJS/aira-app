@@ -113,7 +113,7 @@ export default {
       try {
         var reviewGenerated = this.generatedReview;
         this.displaySpinnerReview = true;
-        const localApiEndPoint = "https://localhost:7165/api/GenerateReview"
+        //const localApiEndPoint = "https://localhost:7165/api/GenerateReview"
         const prdApiEndPoint = "https://www.bloggyapi.com/api/GenerateReview"
         const payload = {
           model: "",
