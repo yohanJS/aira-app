@@ -70,6 +70,7 @@
       </div>
     </div>
   </nav>
+  <!--DESKTOP VERSION-->
   <nav id="home" class="navbar-custom bg-color shadow-lg" v-else>
     <div class="container-fluid">
       <div class="row text-dark">
@@ -81,7 +82,7 @@
         </div>
         <div class="col-3 d-flex justify-content-center align-items-center">
           <a class="display-6 text-dark" href="#">
-            LuvoAI
+            <!-- LuvoAI -->
           </a>
         </div>
         <div class="col-5 d-flex justify-content-center align-items-center">
@@ -126,7 +127,6 @@
   background-color: #101010;
 }
 
-
 .btn-grad {
   background-image: linear-gradient(to right, #AAFFA9 0%, #11FFBD 51%, #AAFFA9 100%);
   text-align: center;
@@ -139,8 +139,6 @@
   color: #fff;
   text-decoration: none;
 }
-
-
 
 .btn-border-color {
   border: 1px solid #CFDD51;

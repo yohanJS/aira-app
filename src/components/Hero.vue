@@ -30,20 +30,19 @@ export default {
 
 <template>
   <div class="container-fluid p-0 rounded-3">
-    <!-- Main content area that grows and pushes GenerateReviewSection down -->
-    <div class="row g-0 bg-color d-flex justify-content-center vh-100">
-      <div class="col-12 text-center align-self-center">
-        <h1 class="display-2 btn-text-color fw-size-400 mt-5">
+    <div class="row g-0 bg-color d-flex justify-content-center min-vh-100">
+      <div class="col-xs-12 align-self-center">
+        <h1 class="display-2 btn-text-color fw-size-400 m-0">
           Meet LuvoAI
         </h1>
       </div>
-      <div class="col-md-12 text-center">
-        <p id="welcomeMsg" class="pb-3 btn-text-color fw-size-600">
+      <div class="col-12 col-md-6">
+        <p id="welcomeMsg" class="pb-3 mb-5 btn-text-color fw-size-600">
           Your AI review assistant
         </p>
-      </div>
-      <div class="col-md-12 bg-light">
-        <GenerateReviewSection />
+        <div class="mt-4 m-1 bg-light rounded shadow-lg pt-2 pb-1">
+            <GenerateReviewSection />
+        </div>
       </div>
     </div>
   </div>

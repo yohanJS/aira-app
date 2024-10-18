@@ -1,6 +1,9 @@
 <template>
   <form @submit.prevent="generateWords">
-    <div class="mb-3 pt-3 m-2">
+    <div class="col-12 text-start">
+      <img src="/src/assets/LuvoLogo.png" class="w-25" />
+    </div>
+     <div class="mb-3 m-2">
       <div class="d-flex align-items-center">
         <input class="form-control me-2" type="text" v-model="productOrService" @blur="handleInputBlur" placeholder="Enter product or service">
         <button class="btn rounded-pill btn-grad text-dark fw-bold" type="submit">

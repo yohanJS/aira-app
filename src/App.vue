@@ -7,7 +7,6 @@ import About from './components/About.vue'
 <template>
   <NavBar></NavBar>
   <Hero></Hero>
-  <About></About>
 </template>
 
 <style scoped>
