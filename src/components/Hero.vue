@@ -40,7 +40,7 @@ export default {
         <p id="welcomeMsg" class="pb-3 mb-5 btn-text-color fw-size-600">
           Your AI review assistant
         </p>
-        <div class="mt-4 m-1 bg-light rounded shadow-lg pt-2 pb-1">
+        <div class="mt-4 m-1 btn-color rounded shadow-lg pt-2 pb-1">
             <GenerateReviewSection />
         </div>
       </div>
@@ -54,7 +54,7 @@ export default {
 }
 
 .btn-color {
-  background-color: #CFDD51;
+  background-color: #1C434D;
 }
 
 .btn-text-color {
