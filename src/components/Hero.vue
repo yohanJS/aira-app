@@ -32,7 +32,7 @@ export default {
   <div class="container-fluid p-0 rounded-3">
     <div class="row g-0 bg-color d-flex justify-content-center min-vh-100">
       <div class="col-xs-12 align-self-center">
-        <h1 class="display-2 btn-text-color fw-size-400 m-0">
+        <h1 class="display-2 mt-5 btn-text-color fw-size-400 m-0">
           Meet LuvoAI
         </h1>
       </div>
