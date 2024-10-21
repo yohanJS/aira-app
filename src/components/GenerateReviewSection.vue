@@ -3,9 +3,10 @@
     <div class="col-12 text-start">
       <img src="/src/assets/LuvoLogo.png" class="w-25" />
     </div>
-     <div class="mb-3 m-2">
+    <div class="mb-3 m-2">
       <div class="d-flex align-items-center">
-        <input class="form-control me-2" type="text" v-model="productOrService" @blur="handleInputBlur" placeholder="Enter product or service">
+        <input class="form-control me-2" type="text" v-model="productOrService" @blur="handleInputBlur"
+          placeholder="Enter product or service">
         <button class="btn rounded-pill btn-grad text-dark fw-bold" type="submit">
           <div v-if="!displaySpinnerWord">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-send"
@@ -87,7 +88,7 @@ export default {
         console.log(this.previousWords);
         var words = this.positiveWords.join(", ") + this.negativeWords.join(", ")
         this.displaySpinnerWord = true
-        const localApiEndPoint = "https://localhost:7165/api/GenerateWords"
+        //const localApiEndPoint = "https://localhost:7165/api/GenerateWords"
         const prdApiEndPoint = "https://www.bloggyapi.com/api/GenerateWords"
         const { data } = await axios.post(prdApiEndPoint, {
           productOrService: this.productOrService + " Previous words: " + this.previousWords
@@ -116,25 +117,29 @@ export default {
       try {
         var reviewGenerated = this.generatedReview;
         this.displaySpinnerReview = true;
-        //const localApiEndPoint = "https://localhost:7165/api/GenerateReview"
-        const prdApiEndPoint = "https://www.bloggyapi.com/api/GenerateReview"
+        const prdApiEndPoint = "https://www.bloggyapi.com/api/GenerateReview";
+
+        // Payload will only include selected words, not the entire word set.
         const payload = {
           model: "",
           messages: [
             {
               id: 0,
               role: "",
-              content: "product or service: " + this.productOrService + ". Words: " + this.positiveWords + this.negativeWords + ". Previous review: " + reviewGenerated
+              content: `Product or service: ${this.productOrService}. 
+                    Positive words: ${this.selectedPositiveWords.length > 0 ? this.selectedPositiveWords.join(", ") : 'No selected positive words'}. 
+                    Negative words: ${this.selectedNegativeWords.length > 0 ? this.selectedNegativeWords.join(", ") : 'No selected negative words'}. 
+                    Previous review: ${reviewGenerated || 'No previous review'}` // Add a fallback if no review exists
             }
           ]
         };
-        const { data } = await axios.post(prdApiEndPoint, payload, {
-        });
+
+        const { data } = await axios.post(prdApiEndPoint, payload);
         this.displaySpinnerReview = false;
         this.generatedReview = data;
       } catch (error) {
         console.log(error);
-        this.words = 'Error! Could not reach the API. ' + error
+        this.words = 'Error! Could not reach the API. ' + error;
       }
     },
     toggleWord(word, type) {
@@ -163,11 +168,11 @@ export default {
       });
     },
     handleInputBlur() {
-    // Scroll the window to the top to remove any white space
-    window.scrollTo(0, 0);
-    
-    // Alternatively, reset the body's height to avoid white space
-    document.body.style.height = '100vh';
+      // Scroll the window to the top to remove any white space
+      window.scrollTo(0, 0);
+
+      // Alternatively, reset the body's height to avoid white space
+      document.body.style.height = '100vh';
     }
   }
 }
