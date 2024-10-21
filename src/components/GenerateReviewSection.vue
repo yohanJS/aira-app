@@ -24,19 +24,20 @@
       </div>
     </div>
     <div class="mt-4 m-3">
-      <div v-if="positiveWords.length > 0">
-        <div class="word-bubbles">
+      <div v-if="positiveWords.length > 0 || negativeWords.length > 0">
+        <div class="word-bubbles mb-3">
           <span v-for="word in positiveWords" :key="word"
             :class="['bubble', 'positive', { selected: selectedPositiveWords.includes(word) }]"
             @click="toggleWord(word, 'positive')">{{ word }}</span>
         </div>
-      </div>
-      <div class="mt-3" v-if="negativeWords.length > 0">
         <div class="word-bubbles">
           <span v-for="word in negativeWords" :key="word"
             :class="['bubble', 'negative', { selected: selectedNegativeWords.includes(word) }]"
             @click="toggleWord(word, 'negative')">{{ word }}</span>
         </div>
+      </div>
+      <div v-if="apiMessage && positiveWords.length === 0 && negativeWords.length === 0" class="text-warning mt-3">
+        {{ apiMessage }}
       </div>
     </div>
   </form>
@@ -59,7 +60,8 @@
     </button>
     <div class="box mt-3 shadow-lg" v-if="generatedReview">
       <textarea v-model="generatedReview" class="content bg-light text-dark form-control border-none" rows="10"
-        cols="50"></textarea>
+        cols="50">
+      </textarea>
       <button class="copy-button mt-3" @click="copyText">Copy</button>
     </div>
   </div>
@@ -79,38 +81,45 @@ export default {
       selectedPositiveWords: [],
       selectedNegativeWords: [],
       generatedReview: null,
-      previousWords: ""
+      previousWords: "",
+      apiMessage: null // To store the message returned by the API
     }
   },
   methods: {
     async generateWords() {
       try {
-        console.log(this.previousWords);
-        var words = this.positiveWords.join(", ") + this.negativeWords.join(", ")
-        this.displaySpinnerWord = true
-        //const localApiEndPoint = "https://localhost:7165/api/GenerateWords"
-        const prdApiEndPoint = "https://www.bloggyapi.com/api/GenerateWords"
+        this.displaySpinnerWord = true;
+        const prdApiEndPoint = "https://www.bloggyapi.com/api/GenerateWords";
         const { data } = await axios.post(prdApiEndPoint, {
           productOrService: this.productOrService + " Previous words: " + this.previousWords
         });
         this.displaySpinnerWord = false;
         const regex = /(Positive|Negative):\s*([a-z, ]+)/gi;
         const matches = data.match(regex);
-        this.previousWords += ", " + data;
 
-        matches.forEach(match => {
-          const [category, words] = match.split(':').map(part => part.trim());
-          const wordArray = words.split(',').map(word => word.trim());
+        // If no matches found, display API message
+        if (!matches || matches.length === 0) {
+          this.apiMessage = data;
+          this.positiveWords = [];
+          this.negativeWords = [];
+        } else {
+          this.apiMessage = null; // Clear previous message if words are returned
+          this.previousWords += ", " + data;
 
-          if (category.toLowerCase() === 'positive') {
-            this.positiveWords = wordArray;
-          } else if (category.toLowerCase() === 'negative') {
-            this.negativeWords = wordArray;
-          }
-        });
+          matches.forEach(match => {
+            const [category, words] = match.split(':').map(part => part.trim());
+            const wordArray = words.split(',').map(word => word.trim());
+
+            if (category.toLowerCase() === 'positive') {
+              this.positiveWords = wordArray;
+            } else if (category.toLowerCase() === 'negative') {
+              this.negativeWords = wordArray;
+            }
+          });
+        }
       } catch (error) {
         this.displaySpinnerWord = false;
-        this.words = 'Error! Could not reach the API. ' + error
+        this.apiMessage = 'Error! Could not reach the API. ' + error;
       }
     },
     async generateReview() {

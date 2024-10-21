@@ -35,11 +35,11 @@ export default {
         <h1 class="display-2 mt-5 btn-text-color fw-size-400 m-0">
           Meet LuvoAI
         </h1>
-      </div>
-      <div class="col-12 col-md-6">
-        <p id="welcomeMsg" class="pb-3 mb-5 btn-text-color fw-size-600">
+        <p id="welcomeMsg" class="pb-3 mb-5 lead btn-text-color fw-size-600">
           Your AI review assistant
         </p>
+      </div>
+      <div class="col-12 col-md-6">
         <div class="mt-4 m-1 btn-color rounded shadow-lg pt-2 pb-1">
             <GenerateReviewSection />
         </div>
