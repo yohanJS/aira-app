@@ -7,8 +7,8 @@ import FetchData from './components/FetchData.vue'
 
 <template>
   <NavBar></NavBar>
-  <BookingButton></BookingButton>
-  <Hero></Hero>
+  <!-- <BookingButton></BookingButton>
+  <Hero></Hero> -->
   <FetchData></FetchData>
 </template>
 
