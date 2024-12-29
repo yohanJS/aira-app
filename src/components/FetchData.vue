@@ -132,7 +132,7 @@
           loading: false,
           services: null,
           serviceId: null,
-          isPrd: false,
+          isPrd: true,
           startOfWeek: moment().startOf('week').format('DD'),
           endOfWeek: moment().endOf('week').format('DD'),
           GetservicesUrl: "",
