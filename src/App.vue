@@ -2,13 +2,14 @@
 import NavBar from './components/NavBar.vue';
 import BookingButton from './components/BookingButton.vue';
 import Hero from './components/Hero.vue';
-import About from './components/About.vue'
+import FetchData from './components/FetchData.vue'
 </script>
 
 <template>
   <NavBar></NavBar>
   <BookingButton></BookingButton>
   <Hero></Hero>
+  <FetchData></FetchData>
 </template>
 
 <style scoped>
