@@ -25,7 +25,7 @@
 
       <div style="margin-top: 100px;" v-if="services !== null">
         <!-- Month and Year Section -->
-        <div class="row justify-content-center align-items-center m-0 p-0 rounded-bottom-2 fixed-top" style="background-color: #001524;">
+        <div class="row justify-content-center align-items-center m-0 p-0 rounded-bottom-2" style="background-color: #001524;">
           <!--<div class="col-auto">
             <i class="bi bi-caret-left-fill" @click="previousMonth"></i>
           </div>-->
