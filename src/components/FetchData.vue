@@ -141,8 +141,8 @@
     },
     async created() {
       this.getWeekRange();
-      this.GetservicesUrl = this.isPrd ? "https://engfuel.com/Bookings/GetAllBookings" : "https://localhost:7144/Bookings/GetAllBookings";
-      this.DeleteservicesUrl = this.isPrd ? "https://engfuel.com/Bookings/DeleteBooking" : "https://localhost:7144/Bookings/DeleteBooking";
+      this.GetservicesUrl = this.isPrd ? "https://engfuel.com/Booking/GetAllBookings" : "https://localhost:7144/Booking/GetAllBookings";
+      this.DeleteservicesUrl = this.isPrd ? "https://engfuel.com/Booking/DeleteBooking" : "https://localhost:7144/Booking/DeleteBooking";
       await this.fetchServices();
     },
     watch: {
