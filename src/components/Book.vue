@@ -544,7 +544,6 @@
           // Clear the form
           this.step = 1;
           this.formData = {
-            businessId: "",
             name: "",
             email: "",
             phone: "",

@@ -142,7 +142,7 @@
     async created() {
       this.getWeekRange();
       this.GetservicesUrl = this.isPrd ? "https://engfuel.com/Bookings/GetAllBookings?businessId=YohanJS" : "https://localhost:7144/Bookings/GetAllBookings?businessId=YohanJS";
-      this.DeleteservicesUrl = this.isPrd ? "https://engfuel.com/Bookings/DeleteBooking?businessId=YohanJS" : "https://localhost:7144/Bookings/DeleteBooking?businessId=YohanJS";
+      this.DeleteservicesUrl = this.isPrd ? "https://engfuel.com/Bookings/DeleteBooking" : "https://localhost:7144/Bookings/DeleteBooking";
       await this.fetchServices();
     },
     watch: {
