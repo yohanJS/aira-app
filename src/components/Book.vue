@@ -315,6 +315,7 @@
           isInPerson: false,
           isSubmissionOk: false,
           formData: {
+            businessId: "YohanJS",
             name: "",
             email: "",
             phone: "",
@@ -516,6 +517,7 @@
               .post(
                 this.CreateBookingUrl,
                 {
+                  BusinessId: this.formData.businessId,
                   Name: this.formData.name,
                   Email: this.formData.email,
                   Phone: this.formData.phone,
@@ -542,7 +544,7 @@
           // Clear the form
           this.step = 1;
           this.formData = {
-            businessId: "YohanJS",
+            businessId: "",
             name: "",
             email: "",
             phone: "",
