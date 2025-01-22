@@ -2,13 +2,14 @@
 import NavBar from './components/NavBar.vue';
 import Book from './components/Book.vue';
 import Hero from './components/Hero.vue';
-import FetchData from './components/FetchData.vue'
+import UpcomingBookings from './components/UpcomingBookings.vue'
 </script>
 
 <template>
   <NavBar></NavBar>
+  <!-- <Hero></Hero> -->
   <Book></Book>
-  <FetchData></FetchData>
+  <UpcomingBookings></UpcomingBookings>
 </template>
 
 <style scoped>
