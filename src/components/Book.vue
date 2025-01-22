@@ -1,6 +1,5 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
-  <NavBar />
   <div id="bookingFormContainer" class="container p-0 text-dark">
     <div class="row m-0 p-4 text-center text-white" style="background-color: #454B1BB8;">
       <div class="col-12">

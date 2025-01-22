@@ -59,7 +59,7 @@
                   {{ formatMonthAndDay(record.serviceDate) }}
               </p>
               <div>
-                  <div class="row m-1 d-flex justify-content-end" v-if="isDateInWeekRange(record.serviceDate)"
+                  <div class="row m-1 d-flex justify-content-end text-start" v-if="isDateInWeekRange(record.serviceDate)"
                       v-for="service in record.services">
                       <div class="col-12 mb-2">
                           <p class="mb-1 text-dark fs-5">{{ service.time }}</p>
